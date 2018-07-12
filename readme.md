@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://unpkg.com/anonymous-id/dist/anonymous-id.min.js">
-    <img src="https://img.badgesize.io/https://unpkg.com/anonymous-id/dist/anonymous-id.min.js?compression=gzip&amp;label=anonymous--id&cache=0">
+    <img src="https://img.badgesize.io/https://unpkg.com/anonymous-id/dist/anonymous-id.min.js?compression=gzip&amp;label=anonymous--id&cache=1">
   </a>
   <a href="./package.json">
     <img src="https://img.shields.io/npm/v/anonymous-id.svg?maxAge=3600&label=anonymous-id&colorB=007ec6">
