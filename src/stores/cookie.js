@@ -27,17 +27,32 @@ function get(opts = {}) {
 
 function set(opts = {}) {
   const { key, id, mutate } = opts
-  let { cookie = '' } = opts
+  let { cookie } = opts
+  let isBrowser = false
+
+  if (!cookie) {
+    try {
+      cookie = document.cookie
+      isBrowser = true
+    } catch (err) {
+      // silence dom error
+      cookie = ''
+    }
+  }
 
   if (!mutate) {
     cookie = `${cookie}`
   }
 
-  if (cookie.length > 0 && cookie[cookie.length - 1] !== ';') {
-    cookie += '; '
+  let prefix
+
+  if (!isBrowser && cookie.length > 0 && cookie[cookie.length - 1] !== ';') {
+    prefix = '; '
+  } else {
+    prefix = ''
   }
 
-  cookie += `${key}=${encodeURIComponent(id)}`
+  cookie += `${prefix}${key}=${encodeURIComponent(id)}`
 
   return cookie
 }
