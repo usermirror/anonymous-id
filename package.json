@@ -14,7 +14,12 @@
     "build:production": "NODE_ENV=production rollup --config rollup.config.js",
     "watch": "rollup --config rollup.config.js --watch",
     "test": "ava",
-    "t": "npm run build && npm test"
+    "patch": "npm run pt && npm version patch && npm run p",
+    "minor": "npm run pt && npm version minor && npm run p",
+    "major": "npm run pt && npm version major && npm run p",
+    "pt": "npm run build:production && npm test",
+    "t": "npm run build && npm test",
+    "p": "npm publish"
   },
   "repository": {
     "type": "git",

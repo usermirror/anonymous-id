@@ -22,6 +22,14 @@ module.exports = function set(opts = {}) {
 
   let result
 
+  if (!localStorage) {
+    try {
+      localStorage = window.localStorage
+    } catch (err) {
+      // silence window error
+    }
+  }
+
   try {
     result = storeId({ debug, key, id, stores, mutate, cookie, localStorage })
     result.status = 'success'

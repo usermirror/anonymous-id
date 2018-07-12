@@ -15,6 +15,14 @@ module.exports = function get(opts = {}) {
   const { generateId, key, stores, persist } = presets[preset]
 
   if (isBrowser({ env })) {
+    if (!localStorage) {
+      try {
+        localStorage = window.localStorage
+      } catch (err) {
+        // silence error
+      }
+    }
+
     const browserId = getBrowserId({ debug, stores, key, cookie, localStorage })
 
     if (browserId) {
