@@ -40,7 +40,6 @@ function configure(env, target) {
       output: {
         format: 'umd',
         file: isProd ? 'dist/anonymous-id.min.js' : 'dist/anonymous-id.js',
-        exports: 'named',
         name: startCase(PKG.name).replace(/ /g, '')
       }
     }
