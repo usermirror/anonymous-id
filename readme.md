@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.npmjs.com/package/anonymous-id"><img src="./docs/images/banner.png?cache=0" alt="anonymousId" /></a>
+  <a href="https://www.npmjs.com/package/anonymous-id"><img src="./docs/images/banner.png?cache=1" alt="anonymousId" /></a>
 </p>
 
 <p align="center">
