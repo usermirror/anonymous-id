@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="#"><strong>anonymous-id</strong></a>
+  <a href="https://www.npmjs.com/package/anonymous-id"><strong>anonymous-id</strong></a>
 </p>
 
 <p align="center">
@@ -12,7 +12,7 @@
   <a href="https://unpkg.com/anonymous-id/dist/anonymous-id.min.js">
     <img src="https://img.badgesize.io/https://unpkg.com/anonymous-id/dist/anonymous-id.min.js?compression=gzip&amp;label=anonymous--id&cache=2">
   </a>
-  <a href="./package.json">
+  <a href="https://www.npmjs.com/package/anonymous-id">
     <img src="https://img.shields.io/npm/v/anonymous-id.svg?maxAge=3600&label=anonymous-id&colorB=007ec6">
   </a>
 </p>
