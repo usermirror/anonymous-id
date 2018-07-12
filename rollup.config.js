@@ -2,6 +2,7 @@ const babel = require('rollup-plugin-babel')
 const commonjs = require('rollup-plugin-commonjs')
 const replace = require('rollup-plugin-replace')
 const resolve = require('rollup-plugin-node-resolve')
+const json = require('rollup-plugin-json')
 const { uglify } = require('rollup-plugin-uglify')
 const { startCase } = require('lodash')
 
@@ -20,10 +21,8 @@ function configure(env, target) {
     resolve({
       browser: true
     }),
-    isUmd &&
-      commonjs({
-        exclude: [`src/**`]
-      }),
+    isUmd && commonjs(),
+    json(),
     replace({
       'process.env.NODE_ENV': JSON.stringify(env)
     }),
