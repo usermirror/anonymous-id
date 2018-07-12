@@ -19,9 +19,9 @@ function configure(env, target) {
 
   const plugins = [
     resolve({
-      browser: true
+      // browser: true
     }),
-    isUmd && commonjs(),
+    commonjs(),
     json(),
     replace({
       'process.env.NODE_ENV': JSON.stringify(env)
@@ -59,7 +59,6 @@ function configure(env, target) {
         {
           file: PKG.main,
           format: 'cjs',
-          exports: 'named',
           sourcemap: true
         }
       ],

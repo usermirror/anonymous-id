@@ -9,6 +9,7 @@
     "lib/"
   ],
   "scripts": {
+    "clean": "rm -rf lib dist",
     "build": "rollup --config rollup.config.js",
     "build:production": "NODE_ENV=production rollup --config rollup.config.js",
     "watch": "rollup --config rollup.config.js --watch",
@@ -44,7 +45,5 @@
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-uglify": "^4.0.0"
   },
-  "dependencies": {
-    "uuid": "^3.3.2"
-  }
+  "dependencies": {}
 }
