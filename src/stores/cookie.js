@@ -30,31 +30,25 @@ function set(opts = {}) {
   let { cookie } = opts
   let isBrowser = false
 
-  if (!cookie) {
-    try {
-      cookie = document.cookie
-      isBrowser = true
-    } catch (err) {
-      // silence dom error
-      cookie = ''
-    }
+  try {
+    cookie = document.cookie
+    isBrowser = true
+  } catch (err) {
+    // silence dom error
+    cookie = ''
   }
 
   if (!mutate) {
     cookie = `${cookie}`
   }
 
-  let prefix
+  const newCookie = `${key}=${encodeURIComponent(id)}`
 
-  if (!isBrowser && cookie.length > 0 && cookie[cookie.length - 1] !== ';') {
-    prefix = '; '
-  } else {
-    prefix = ''
+  if (isBrowser) {
+    document.cookie = newCookie
   }
 
-  cookie += `${prefix}${key}=${encodeURIComponent(id)}`
-
-  return cookie
+  return [cookie, newCookie].filter(Boolean).join('; ')
 }
 
 module.exports = {

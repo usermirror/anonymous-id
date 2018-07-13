@@ -26,6 +26,7 @@ module.exports = function get(opts = {}) {
     const browserId = getBrowserId({ debug, stores, key, cookie, localStorage })
 
     if (browserId) {
+      log(`get: found browser id {id: "${browserId}"}`)
       return browserId
     }
   } else {
@@ -35,6 +36,8 @@ module.exports = function get(opts = {}) {
   const newId = generateId()
 
   if (persist) {
+    log(`get: created new id {id: "${newId}"}`)
+
     set({
       debug,
       key,
@@ -44,8 +47,6 @@ module.exports = function get(opts = {}) {
       localStorage: opts.localStorage
     })
   }
-
-  log(`get: creating new id {id: "${newId}"}`)
 
   return newId
 }
@@ -60,14 +61,14 @@ function getBrowserId({ debug, stores, key, cookie, localStorage }) {
   const log = Log({ debug })
 
   for (const store of stores) {
-    log(`getBrowserId: check store {store: "${store}", key: "${key}"}`)
-
     const storeGet = storeGetters[store]
     const value = storeGet({ key, cookie, localStorage })
 
     if (value) {
-      log(`getBrowserId: found in store {store: "${store}", key: "${key}"}`)
+      log(`get.browser: hit {store: "${store}", key: "${key}"}`)
       return value
+    } else {
+      log(`get.browser: miss {store: "${store}", key: "${key}"}`)
     }
   }
 

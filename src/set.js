@@ -15,7 +15,7 @@ module.exports = function set(opts = {}) {
 
   if (!id) {
     id = generateId()
-    log(`set: generated new id {id: "${id}"}`)
+    log(`set: created new id {id: "${id}"}`)
   } else {
     log(`set: using {id: "${id}"}`)
   }
