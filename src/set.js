@@ -71,6 +71,8 @@ function storeId(opts = {}) {
       }
     } catch (err) {
       // TODO: Handle unknown error trying to store id
+      log(`set.${store}: fail {id: "${id}"}`)
+      console.error(err)
     }
   }
 

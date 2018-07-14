@@ -23,7 +23,13 @@ module.exports = function get(opts = {}) {
       }
     }
 
-    const browserId = getBrowserId({ debug, stores, key, cookie, localStorage })
+    const browserId = getBrowserId({
+      debug,
+      stores,
+      key,
+      cookie,
+      localStorage
+    })
 
     if (browserId) {
       log(`get: found browser id {id: "${browserId}"}`)
@@ -36,7 +42,7 @@ module.exports = function get(opts = {}) {
   const newId = generateId()
 
   if (persist) {
-    log(`get: created new id {id: "${newId}"}`)
+    log(`get: persisting new id {id: "${newId}"}`)
 
     set({
       debug,
