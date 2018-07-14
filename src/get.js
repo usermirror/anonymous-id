@@ -23,6 +23,14 @@ module.exports = function get(opts = {}) {
       }
     }
 
+    if (!cookie) {
+      try {
+        cookie = document.cookie
+      } catch (err) {
+        // silence error
+      }
+    }
+
     const browserId = getBrowserId({
       debug,
       stores,
