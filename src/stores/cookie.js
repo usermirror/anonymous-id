@@ -25,6 +25,23 @@ function get(opts = {}) {
   return cookies[key]
 }
 
+function browserSet(name, value, expires, path, secure) {
+  let valueToUse
+
+  if (value !== undefined && typeof value === 'object')
+    valueToUse = JSON.stringify(value)
+  else valueToUse = encodeURIComponent(value)
+
+  document.cookie =
+    name +
+    '=' +
+    valueToUse +
+    (expires ? '; expires=' + new Date(expires).toUTCString() : '') +
+    '; path=' +
+    (path || '/') +
+    (secure ? '; secure' : '')
+}
+
 function set(opts = {}) {
   const { key, id, mutate } = opts
   let { cookie } = opts
@@ -38,15 +55,15 @@ function set(opts = {}) {
     cookie = ''
   }
 
+  if (isBrowser) {
+    browserSet(key, id, null, '/', false)
+  }
+
   if (!mutate) {
     cookie = `${cookie}`
   }
 
   const newCookie = `${key}=${encodeURIComponent(id)}`
-
-  if (isBrowser) {
-    document.cookie = newCookie
-  }
 
   return [cookie, newCookie].filter(Boolean).join('; ')
 }
