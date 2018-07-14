@@ -25,7 +25,7 @@ function get(opts = {}) {
   return cookies[key]
 }
 
-function browserSet(name, value, expires, path, secure) {
+function browserSet({ name, value, expires, path, secure }) {
   let valueToUse
 
   if (value !== undefined && typeof value === 'object')
@@ -39,11 +39,12 @@ function browserSet(name, value, expires, path, secure) {
     (expires ? '; expires=' + new Date(expires).toUTCString() : '') +
     '; path=' +
     (path || '/') +
+    (domain ? '; domain=' + domain : '') +
     (secure ? '; secure' : '')
 }
 
 function set(opts = {}) {
-  const { key, id, mutate } = opts
+  const { key, id, mutate, domain } = opts
   let { cookie } = opts
   let isBrowser = false
 
@@ -56,7 +57,7 @@ function set(opts = {}) {
   }
 
   if (isBrowser) {
-    browserSet(key, id, null, '/', false)
+    browserSet({ name: key, value: id, path: '/', domain })
   }
 
   if (!mutate) {

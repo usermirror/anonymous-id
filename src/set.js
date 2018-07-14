@@ -3,7 +3,7 @@ const presets = require('./utils/presets')
 const { set: storeSetters } = require('./stores')
 
 module.exports = function set(opts = {}) {
-  let { id, debug, preset = 'segment', cookie, localStorage } = opts
+  let { id, debug, preset = 'segment', cookie, localStorage, domain } = opts
   let log = Log({ debug })
 
   if (!presets[preset]) {
@@ -31,7 +31,16 @@ module.exports = function set(opts = {}) {
   }
 
   try {
-    result = storeId({ debug, key, id, stores, mutate, cookie, localStorage })
+    result = storeId({
+      debug,
+      key,
+      id,
+      stores,
+      mutate,
+      cookie,
+      localStorage,
+      domain
+    })
     result.status = 'success'
   } catch (error) {
     log(`set: error`, error)
@@ -45,14 +54,14 @@ module.exports = function set(opts = {}) {
 }
 
 function storeId(opts = {}) {
-  const { debug, key, id, stores, mutate, cookie, localStorage } = opts
+  const { debug, key, id, stores, mutate, cookie, localStorage, domain } = opts
   const result = {}
   const log = Log({ debug })
 
   for (const store of stores) {
     try {
       const storeSet = storeSetters[store]
-      const value = storeSet({ key, id, mutate, cookie, localStorage })
+      const value = storeSet({ key, id, mutate, cookie, localStorage, domain })
 
       if (value) {
         log(`set.${store}: success {id: "${id}"}`)
