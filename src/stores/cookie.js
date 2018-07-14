@@ -25,7 +25,7 @@ function get(opts = {}) {
   return cookies[key]
 }
 
-function browserSet({ name, value, expires, path, secure }) {
+function browserSet({ name, value, expires, domain, path, secure }) {
   let valueToUse
 
   if (value !== undefined && typeof value === 'object')
