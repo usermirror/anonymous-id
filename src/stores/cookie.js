@@ -12,7 +12,8 @@ function getAll(cookie = '') {
   for (let i = 0; i < cookieParts.length; i++) {
     const [key, value] = cookieParts[i].split('=')
 
-    cookies[key] = decodeURIComponent(value)
+    // remove quotes from stringified id
+    cookies[key] = (decodeURIComponent(value) || '').replace(/"/g, '')
   }
 
   return cookies
